@@ -29,7 +29,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         tag_name: training-materials
-        name: Caving Club Training Materials
+        name: St. Cuthbert's Info Pack
         body: |
           **Latest St. Cuthbert's Materials**
           
