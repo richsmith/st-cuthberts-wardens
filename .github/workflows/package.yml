@@ -20,7 +20,7 @@ jobs:
     - name: Create zip archive
       run: |
         cd src/
-        zip -r ../${{ env.ZIP_FILENAME }} src/
+        zip -r ../${{ env.ZIP_FILENAME }} .
     
     - name: Generate timestamp
       id: timestamp
