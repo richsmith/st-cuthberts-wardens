@@ -1,4 +1,4 @@
-# Info Pack for trainee St. Cuthbert's Wardens
+# Info Pack for Trainee St. Cuthbert's Wardens
 
 This is an information pack for cavers working towards becoming wardens for St. Cuthbert's Swallet.
 
