@@ -1,0 +1,46 @@
+# .github/workflows/package-src.yml
+name: Package Source Files
+
+env:
+  ZIP_FILENAME: cuthberts-resources.zip
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  package-and-upload:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Create zip archive
+      run: |
+        zip -r ${{ env.ZIP_FILENAME }} src/
+    
+    - name: Generate timestamp
+      id: timestamp
+      run: echo "timestamp=$(date +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+    
+    - name: Update Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: training-materials
+        name: Caving Club Training Materials
+        body: |
+          **Latest St. Cuthbert's Materials**
+          
+          Download the complete training materials package below. This
+          is automatically updated when changes are pushed to the main
+          branch.
+          
+          **Last Updated:** ${{ steps.timestamp.outputs.timestamp }}
+          **Latest Commit:** ${{ github.sha }}
+          **Branch:** ${{ github.ref_name }}
+        files: ${{ env.ZIP_FILENAME }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
